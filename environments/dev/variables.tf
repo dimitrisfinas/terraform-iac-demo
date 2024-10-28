@@ -13,7 +13,18 @@
 # limitations under the License.
 
 
+
+variable "credentials" {
+    type = string
+    description = "Google Cloud credential"
+}
+
 variable "project" {
     type = string
-    description = "Google Project to deploy to"
+    description = "Google Cloud Project to deploy to"
+}
+
+variable "region" {
+    type = string
+    description = "Google Cloud region"
 }

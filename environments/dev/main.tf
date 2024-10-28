@@ -18,7 +18,9 @@ locals {
 }
 
 provider "google" {
-  project = var.project
+  credentials = var.credentials
+  project     = var.project
+  region      = var.region
 }
 
 module "vpc" {
