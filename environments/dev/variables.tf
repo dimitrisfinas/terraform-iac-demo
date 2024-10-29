@@ -27,9 +27,5 @@ variable "project" {
 variable "region" {
     type = string
     description = "Google Cloud region"
-}
-
-variable "test" {
-    type = string
-    description = "This is a test variable"
+    default = "us-central1-a"
 }
