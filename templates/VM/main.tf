@@ -1,7 +1,8 @@
 resource "google_compute_instance" "vm-from-terraform" {
-  name         = "vm-from-terraform"
+  name         = var.name
   machine_type = "n2-standard-2"
-  zone         = "us-central1-a"
+  #zone         = "us-central1-a"
+  zone         = var.zone
 
   tags = ["foo", "bar"]
 
@@ -16,7 +17,6 @@ resource "google_compute_instance" "vm-from-terraform" {
 
   network_interface {
     network = "default"
-
   }
 
   metadata = {
@@ -24,5 +24,6 @@ resource "google_compute_instance" "vm-from-terraform" {
   }
 
   metadata_startup_script = "echo hi > /test.txt"
+  allow_stopping_for_update = true 
 
 }
