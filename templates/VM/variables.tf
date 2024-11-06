@@ -6,6 +6,12 @@ variable "credentials" {
 variable "name" {
     type = string
     description = "Name of your Virtual Machine"
+    default = "vm-gcp-tf-XXX"
+
+    validation {
+        condition     = length(var.name) > 7
+        error_message = "Name of VM length must be at least 8 characters."
+    }
 }
 
 variable "project" {
@@ -15,18 +21,18 @@ variable "project" {
 }
 
 variable "region" {
-    type = list(string)
+    type = string
     description = "Google Cloud Region"
-    default = ["europe-central2", "europe-west1", "europe-west2", "us-central1", "us-east1", "us-west2"]
+    default = "us-central1"
+
+    validation {
+        condition     = contains(["europe-central2", "europe-west1", "europe-west2", "us-central1", "us-east1", "us-west2"], var.region)
+        error_message = "Valid values for zone are (europe-central2, europe-west1, europe-west2, us-central1, us-east1, us-west2)."
+  } 
 }
 
 variable "zone" {
     type = string
     description = "Google Cloud Zone"
     default = "us-central1-a"
-    
-    validation {
-        condition     = contains(["us-central1-a", "us-east1-a", "us-west2-a"], var.zone)
-        error_message = "Valid values for zone are (us-central1-a, us-east1-a, us-west2-a)."
-  } 
 }
