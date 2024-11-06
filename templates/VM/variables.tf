@@ -15,13 +15,18 @@ variable "project" {
 }
 
 variable "region" {
-    type = string
+    type = list(string)
     description = "Google Cloud Region"
-    default = "us-central1"
+    default = ["europe-central2", "europe-west1", "europe-west2", "us-central1", "us-east1", "us-west2"]
 }
 
 variable "zone" {
     type = string
     description = "Google Cloud Zone"
     default = "us-central1-a"
+    
+    validation {
+        condition     = contains(["us-central1-a", "us-east1-a", "us-west2-a"], var.zone)
+        error_message = "Valid values for zone are (us-central1-a, us-east1-a, us-west2-a)."
+  } 
 }
