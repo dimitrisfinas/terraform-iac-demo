@@ -1,17 +1,8 @@
+## AUTHENTICATION INFORMATION, NOT SHOWN IN SERVICENOW CLOUD SERVICE CATALOG VARIABLE
+
 variable "credentials" {
     type = string
     description = "Google Cloud credential"
-}
-
-variable "name" {
-    type = string
-    description = "Name of your Virtual Machine"
-    default = "vm-gcp-tf-XXX"
-
-    validation {
-        condition     = length(var.name) > 7
-        error_message = "Name of VM length must be at least 8 characters."
-    }
 }
 
 variable "project" {
@@ -30,6 +21,21 @@ variable "region" {
         error_message = "Valid values for zone are (europe-central2, europe-west1, europe-west2, us-central1, us-east1, us-west2)."
   } 
 }
+
+## PROVISIONING VARIABLES
+
+variable "name" {
+    type = string
+    description = "Name of your Virtual Machine"
+    default = "vm-gcp-tf-XXX"
+
+    validation {
+        condition     = length(var.name) > 7
+        error_message = "Name of VM length must be at least 8 characters."
+    }
+}
+
+
 
 variable "zone" {
     type = string
